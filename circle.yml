@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: PHPUnit
-          command: ./vendor/bin/phpunit
+          command: ./vendor/bin/simple-phpunit
 
       - save_cache:
           key: cache-v1-{{ checksum "composer.lock" }}
