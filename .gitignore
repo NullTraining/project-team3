@@ -8,6 +8,7 @@
 
 /.vagrant
 /Vagrantfile
+/composer.phar
 
 ###> symfony/phpunit-bridge ###
 .phpunit
