@@ -8,7 +8,7 @@ jobs:
           - APP_ENV=test
           - APP_DEBUG=1
           - APP_SECRET=123
-          - DATABASE_URL=mysql://bob:n0p455@127.0.0.1:3306/bob_dev
+          - DATABASE_URL=mysql://bob:n0p455@127.0.0.1:3306/bob_test
           - TEST_DATABASE_URL=mysql://bob:n0p455@127.0.0.1:3306/bob_test
       - image: mysql:5.7
         environment:
@@ -27,6 +27,10 @@ jobs:
       - run:
           name: Composer install
           command: composer install -n --prefer-dist
+
+      - run:
+          name: Wait for MySQL to show up
+          command: dockerize -wait tcp://localhost:3306 -timeout 1m
 
       - run:
           name: Update schema (add all tables project needs)
