@@ -2,3 +2,7 @@ index:
     path: /
     defaults: { _controller: 'App\Controller\HomepageController::indexAction' }
     methods: [GET]
+
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
