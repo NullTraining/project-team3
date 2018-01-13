@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+    {% if workshops is empty %}
+        <div>
+            Currently, there are no active workshops.
+        </div>
+    {% else %}
+        <ul>
+            {% for workshop in workshops %}
+                <li data-id="{{ workshop.id }}">
+                    {{ workshop.title }}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}
