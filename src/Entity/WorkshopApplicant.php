@@ -39,7 +39,7 @@ class WorkshopApplicant
     /**
      * @return int
      */
-    public function getId(): int
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -55,7 +55,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getFirstName(): string
+    public function getFirstName(): ?string
     {
         return $this->firstName;
     }
@@ -71,7 +71,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getLastName(): string
+    public function getLastName(): ?string
     {
         return $this->lastName;
     }
@@ -87,7 +87,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getContactEmailAddress()
+    public function getContactEmailAddress(): ?string
     {
         return $this->contactEmailAddress;
     }
@@ -103,7 +103,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getContactPhoneNumber(): string
+    public function getContactPhoneNumber(): ?string
     {
         return $this->contactPhoneNumber;
     }
