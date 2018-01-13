@@ -34,7 +34,7 @@ jobs:
 
       - run:
           name: Update schema (add all tables project needs)
-          command: php bin/console doctrine:schema:update --force
+          command: php bin/console doctrine:migrations:migrate --no-interaction
 
       - run:
           name: PHPUnit
