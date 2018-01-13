@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: false
+
+    #register data fixtures
+    App\DataFixtures\ORM\:
+        resource: '../../../src/DataFixtures/ORM'
+        tags: ['doctrine.fixture.orm']
