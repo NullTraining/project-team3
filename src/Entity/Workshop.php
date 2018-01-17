@@ -33,6 +33,13 @@ class Workshop
      * @var DateTime
      */
     private $date;
+
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var bool
+     */
+    private $active = false;
     
     /**
      * @return int
@@ -97,6 +104,24 @@ class Workshop
     {
         $this->date = $date;
     }
+
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+
+    /**
+     * @param bool $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
+
+
 
 
 }
