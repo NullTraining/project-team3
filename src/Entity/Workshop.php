@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -25,14 +26,21 @@ class Workshop
      * @ORM\Column(type="text")
      */
     private $description;
-
-
+    
+    
     /**
      * @ORM\Column(type="datetime")
      *
      * @var DateTime
      */
     private $date;
+    
+    /**
+     * @ORM\Column(type="boolean")
+     *
+     * @var bool
+     */
+    private $active = false;
     
     /**
      * @return int
@@ -81,15 +89,15 @@ class Workshop
     {
         $this->description = $description;
     }
-
+    
     /**
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getDate(): DateTime
+    public function getDate(): ?DateTime
     {
         return $this->date;
     }
-
+    
     /**
      * @param DateTime $date
      */
@@ -97,6 +105,20 @@ class Workshop
     {
         $this->date = $date;
     }
-
-
+    
+    /**
+     * @return bool
+     */
+    public function isActive(): bool
+    {
+        return $this->active;
+    }
+    
+    /**
+     * @param bool $active
+     */
+    public function setActive(bool $active): void
+    {
+        $this->active = $active;
+    }
 }
