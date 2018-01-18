@@ -25,6 +25,14 @@ class Workshop
      * @ORM\Column(type="text")
      */
     private $description;
+
+
+    /**
+     * @ORM\Column(type="datetime")
+     *
+     * @var DateTime
+     */
+    private $date;
     
     /**
      * @return int
@@ -73,4 +81,22 @@ class Workshop
     {
         $this->description = $description;
     }
+
+    /**
+     * @return DateTime
+     */
+    public function getDate(): DateTime
+    {
+        return $this->date;
+    }
+
+    /**
+     * @param DateTime $date
+     */
+    public function setDate(DateTime $date): void
+    {
+        $this->date = $date;
+    }
+
+
 }
