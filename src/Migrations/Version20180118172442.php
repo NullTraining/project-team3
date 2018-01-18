@@ -15,7 +15,7 @@ class Version20180118172442 extends AbstractMigration
         // this up() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE workshop ADD date DATETIME NOT NULL, ADD active TINYINT(1) NOT NULL');
+        $this->addSql('ALTER TABLE workshop ADD active TINYINT(1) NOT NULL');
     }
 
     public function down(Schema $schema)
@@ -23,6 +23,6 @@ class Version20180118172442 extends AbstractMigration
         // this down() migration is auto-generated, please modify it to your needs
         $this->abortIf($this->connection->getDatabasePlatform()->getName() !== 'mysql', 'Migration can only be executed safely on \'mysql\'.');
 
-        $this->addSql('ALTER TABLE workshop DROP date, DROP active');
+        $this->addSql('ALTER TABLE workshop DROP active');
     }
 }
