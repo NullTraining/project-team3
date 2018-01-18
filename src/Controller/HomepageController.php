@@ -30,6 +30,7 @@ class HomepageController
     }
     
     /**
+     * @Route("/", name="homepage")
      * @Template("workshop/home.list.html.twig")
      * @return array
      */
@@ -37,12 +38,5 @@ class HomepageController
     {
         return ['workshops' => $this->repository->findAll(),];
     }
-    
-    /**
-     * @Route("/hello")
-     */
-    public function helloAction()
-    {
-        return new Response('Hello');
-    }
+
 }
