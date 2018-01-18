@@ -30,7 +30,6 @@ class HomepageController
     }
     
     /**
-     * @Route("/", name="homepage")
      * @Template("workshop/home.list.html.twig")
      * @return array
      */
