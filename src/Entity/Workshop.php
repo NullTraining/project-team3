@@ -2,8 +2,8 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
-use \DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WorkshopRepository")
@@ -121,6 +121,4 @@ class Workshop
     {
         $this->active = $active;
     }
-    
-    
 }
