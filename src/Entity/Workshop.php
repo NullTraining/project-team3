@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use \DateTime;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\WorkshopRepository")
@@ -25,15 +26,15 @@ class Workshop
      * @ORM\Column(type="text")
      */
     private $description;
-
-
+    
+    
     /**
      * @ORM\Column(type="datetime")
      *
      * @var DateTime
      */
     private $date;
-
+    
     /**
      * @ORM\Column(type="boolean")
      *
@@ -88,15 +89,15 @@ class Workshop
     {
         $this->description = $description;
     }
-
+    
     /**
-     * @return DateTime
+     * @return null|DateTime
      */
-    public function getDate(): DateTime
+    public function getDate(): ?DateTime
     {
         return $this->date;
     }
-
+    
     /**
      * @param DateTime $date
      */
@@ -104,7 +105,7 @@ class Workshop
     {
         $this->date = $date;
     }
-
+    
     /**
      * @return bool
      */
@@ -112,7 +113,7 @@ class Workshop
     {
         return $this->active;
     }
-
+    
     /**
      * @param bool $active
      */
@@ -120,8 +121,6 @@ class Workshop
     {
         $this->active = $active;
     }
-
-
-
-
+    
+    
 }
