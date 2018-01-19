@@ -15,6 +15,6 @@ class HomepageControllerTest extends WebTestCase
         
         $client->request('GET', $url);
         
-        self::assertContains('Currently, there are no active workshops', $client->getResponse()->getContent());
+        self::assertContains('Null Training - Team 3', $client->getResponse()->getContent());
     }
 }
