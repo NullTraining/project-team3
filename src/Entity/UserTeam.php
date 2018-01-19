@@ -54,4 +54,12 @@ class UserTeam
     {
         $this->title = $title;
     }
+    
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return sprintf('%s', $this->getTitle());
+    }
 }
