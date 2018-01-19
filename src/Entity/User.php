@@ -19,9 +19,33 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-
+    
+    /**
+     * @ORM\ManyToOne(targetEntity="\App\Entity\UserTeam", inversedBy="users")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $team;
+    
     public function __construct()
     {
         parent::__construct();
     }
+    
+    /**
+     * @return mixed
+     */
+    public function getTeam()
+    {
+        return $this->team;
+    }
+    
+    /**
+     * @param mixed $team
+     */
+    public function setTeam($team): void
+    {
+        $this->team = $team;
+    }
+    
+    
 }
