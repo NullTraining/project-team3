@@ -29,5 +29,4 @@ class WorkshopController
         //return new Response('This is workshops page');
         return ['workshops' => $this->workshopRepository->findAll(),];
     }
-
 }
