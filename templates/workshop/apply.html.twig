@@ -1,0 +1,31 @@
+
+{% extends 'base.html.twig' %}
+
+
+{% block body %}
+
+
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">NullTraining</h2>
+                    <h3 class="section-subheading text-muted">Your feature starts here.</h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    {{ form_start(form) }}
+                    {{ form_row(form.firstName) }}
+                    {{ form_row(form.lastName) }}
+                    {{ form_row(form.contactEmailAddress) }}
+                    {{ form_row(form.contactPhoneNumber) }}
+
+                    <button type="submit" class="btn btn-primary">Apply</button>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
