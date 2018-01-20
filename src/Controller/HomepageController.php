@@ -30,7 +30,7 @@ class HomepageController
     }
     
     /**
-     * @Template("workshop/home.list.html.twig")
+     * @Template("homepage/index.html.twig")
      * @return array
      */
     public function indexAction()
