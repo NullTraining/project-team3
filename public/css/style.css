@@ -2,3 +2,26 @@
     text-transform: none;
     color: #000;
 }
+
+.login__page #mainNav {
+    border-bottom: 1px solid rgba(33, 37, 41, 0.1);
+    background-color: #fff;
+}
+
+.login__page #mainNav .navbar-brand {
+    color: #F05F40;
+}
+
+.login__page #mainNav .navbar-brand:focus, .login__page #mainNav .navbar-brand:hover {
+    color: #f05f40;
+}
+
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link,
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+    color: #212529;
+}
+
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+    color: #F05F40;
+}
