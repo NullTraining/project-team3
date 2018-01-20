@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    {% set headerVars = {
+        'title': 'Null Training - Team 3',
+        'subTitle': 'Start changing your career path. Build better web aplications using Symfony framework! Just pay and learn, no strings attached!',
+        'link': {'href': path('workshop_apply'),'text': 'Apply here'}
+    } %}
+    {% include 'partials/header.html.twig' with headerVars %}
+
+  {% if workshops is empty %}
+<strong>
+    {% include 'homepage/workshops-blank.html.twig' %}
+</strong>
+{% else %}
+      {% include 'homepage/workshops.html.twig' with {'title': 'Workshops', 'workshops': workshops} %}
+{% endif %}
+
+{% endblock %}
