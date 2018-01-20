@@ -1,6 +1,21 @@
 {% extends "@FOSUser/layout.html.twig" %}
 
+{% set bodyClass = 'login__page' %}
+
 {% block fos_user_content %}
-    <p>This is nice page, trust me! :)</p>
-    {{ include('@FOSUser/Security/login_content.html.twig') }}
+    <section id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <h2 class="section-heading text-uppercase">Login</h2>
+                    <h3 class="section-subheading text-muted">Please login to proceed</h3>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-lg-6 offset-lg-3 col-sm-12">
+                    {{ include('bundles/FOSUserBundle/Security/login_content.html.twig') }}
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock fos_user_content %}
