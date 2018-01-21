@@ -3,25 +3,34 @@
     color: #000;
 }
 
-.login__page #mainNav {
+.login__page #mainNav,
+.apply__page #mainNav {
     border-bottom: 1px solid rgba(33, 37, 41, 0.1);
     background-color: #fff;
 }
 
-.login__page #mainNav .navbar-brand {
+.login__page #mainNav .navbar-brand,
+.apply__page #mainNav .navbar-brand {
     color: #F05F40;
 }
 
-.login__page #mainNav .navbar-brand:focus, .login__page #mainNav .navbar-brand:hover {
+.login__page #mainNav .navbar-brand:focus,
+.login__page #mainNav .navbar-brand:hover,
+.apply__page #mainNav .navbar-brand:focus,
+.apply__page #mainNav .navbar-brand:hover {
     color: #f05f40;
 }
 
 .login__page #mainNav .navbar-nav > li.nav-item > a.nav-link,
-.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus,
+.apply__page #mainNav .navbar-nav > li.nav-item > a.nav-link,
+.apply__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus {
     color: #212529;
 }
 
 .login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
-.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
+.login__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover,
+.apply__page #mainNav .navbar-nav > li.nav-item > a.nav-link:hover,
+.apply__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
     color: #F05F40;
 }
