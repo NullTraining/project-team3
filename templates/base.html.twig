@@ -33,7 +33,8 @@
     <link rel="stylesheet" type="text/css" href="/css/style.css">
     {% block stylesheets %}{% endblock %}
 </head>
-<body>
+<body class="{{ bodyClass is defined ? bodyClass : '' }}">
+
 {% include 'partials/navigation.html.twig' %}
 
 {% block body %}{% endblock %}
