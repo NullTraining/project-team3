@@ -1,7 +1,20 @@
 easy_admin:
+    site_name: 'T3 Backend'
+    design:
+        assets:
+            js:
+              - 'js/admin.js'
     entities:
         # List the entity class name you want to manage
-        - App\Entity\User
-        - App\Entity\Workshop
-        - App\Entity\WorkshopApplicant
-        - App\Entity\UserTeam
+        User:
+            class: App\Entity\User
+        Workshop:
+            class: App\Entity\Workshop
+        WorkshopApplicant:
+            class: App\Entity\WorkshopApplicant
+            controller: App\Controller\Admin\WorkshopApplicantController
+            list:
+                actions:
+                    - { name: 'approve', icon: 'thumbs-up' }
+        UserTeam:
+            class: App\Entity\UserTeam
