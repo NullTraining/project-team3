@@ -1,0 +1,59 @@
+{% set _entity_config = easyadmin_entity(app.request.query.get('entity')) %}
+{% set _entity_id = attribute(entity, _entity_config.primary_key_field_name) %}
+{% trans_default_domain _entity_config.translation_domain %}
+{% set _trans_parameters = { '%entity_name%': _entity_config.name|trans, '%entity_label%': _entity_config.label|trans, '%entity_id%': _entity_id } %}
+
+{% extends _entity_config.templates.layout %}
+
+{% block body_id 'easyadmin-edit-' ~ _entity_config.name ~ '-' ~ _entity_id %}
+{% block body_class 'edit edit-' ~ _entity_config.name|lower %}
+
+{% block content_title %}
+    {% spaceless %}
+        Approve user
+    {% endspaceless %}
+{% endblock %}
+
+{% block main %}
+
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            <h3> Are you sure you want to approve this user and send him invitation?</h3>
+            <h3> {{ app.request.query.get('referer', '')|url_encode }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 text-center">
+            {{ form_start(form) }}
+            {{ form_row(form.confirm_invite) }}
+            {{ form_row(form.ok, {
+                'label' : 'Yes, invite him',
+            }) }}
+            <a href="/{{ app.request.query.get('referer', '')|url_encode }}">Cancel</a>
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}
+
+
+{#{% for action in actions %}#}
+    {#{% if 'list' == action.name %}#}
+        {#{% set action_href = request_parameters.referer|default('') ? request_parameters.referer|easyadmin_urldecode : path('easyadmin', request_parameters|merge({ action: 'list' })) %}#}
+    {#{% elseif 'method' == action.type %}#}
+        {#{% set action_href = path('easyadmin', request_parameters|merge({ action: action.name, id: item_id })) %}#}
+    {#{% elseif 'route' == action.type %}#}
+        {#{% set action_href = path(action.name, request_parameters|merge({ action: action.name, id: item_id })) %}#}
+    {#{% endif %}#}
+
+    {#<a class="{{ action.css_class|default('') }}" title="{{ action.title|default('') is empty ? '' : action.title|trans(trans_parameters, translation_domain) }}" href="{{ action_href }}" target="{{ action.target }}">#}
+        {#{%- if action.icon %}<i class="fa fa-{{ action.icon }}"></i> {% endif -%}#}
+        {#{%- if action.label is defined and not action.label is empty -%}#}
+            {#{{ action.label|trans(arguments = trans_parameters|merge({ '%entity_id%': item_id }), domain = translation_domain) }}#}
+        {#{%- endif -%}#}
+    {#</a>#}
+{#{% endfor %}#}
+
+{% block body_javascript %}
+    {{ parent() }}
+
+{% endblock %}
