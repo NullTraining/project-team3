@@ -11,6 +11,7 @@ namespace App\Controller\Admin;
 use App\Entity\WorkshopApplicant;
 use App\Repository\UserRepository;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use FOS\UserBundle\Model\UserManager;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 
@@ -50,20 +51,28 @@ class WorkshopApplicantController extends BaseAdminController
         $form = $this->createFormBuilder()
             ->add('confirm_invite', HiddenType::class, [
                 'data' => 1,
+                'required' => true,
             ])
             ->add('ok', SubmitType::class)
             ->getForm();
-        
-        
-        //        $editForm->handleRequest($this->request);
-        //        if ($editForm->isSubmitted() && $editForm->isValid()) {
-        //            $this->dispatch(EasyAdminEvents::PRE_UPDATE, array('entity' => $entity));
-        //
-        //            $this->executeDynamicMethod('preUpdate<EntityName>Entity', array($entity));
-        //            $this->em->flush();
-        
-        //            return $this->redirectToReferrer();
-        //        }
+    
+    
+        $form->handleRequest($this->request);
+        if ($form->isSubmitted() && $form->isValid()) {
+    
+            /**
+             * @var $userManager UserManager
+             */
+            $userManager = $this->get('fos_user.user_manager');
+            $newUser = $userManager->createUser();
+            $newUser->setUsername($applicantEntity->getContactEmailAddress());
+            $newUser->setEmail($applicantEntity->getContactEmailAddress());
+            $newUser->setEmailCanonical($applicantEntity->getContactEmailAddress());
+            $newUser->setEnabled(true);
+            $ti = $userManager->updateUser($newUser);
+            $ja = '';
+            die('submit');
+        }
         
         
         return $this->render('admin/workshop-applicant/confirm-approve.html.twig', [
