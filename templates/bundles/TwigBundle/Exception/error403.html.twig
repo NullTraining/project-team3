@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>You are not allowed to be here :/</h1>
+
+    <p>
+       Your role lack's permissions, please go <a href="{{ path('index') }}">return to the homepage</a>.
+    </p>
+{% endblock %}
