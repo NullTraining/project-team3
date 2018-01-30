@@ -37,6 +37,12 @@ class WorkshopApplicant
     private $contactPhoneNumber;
     
     /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     * @var $isApproved bool
+     */
+    private $isApproved = false;
+    
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -114,5 +120,21 @@ class WorkshopApplicant
     public function setContactPhoneNumber(string $contactPhoneNumber)
     {
         $this->contactPhoneNumber = $contactPhoneNumber;
+    }
+    
+    /**
+     * @return bool
+     */
+    public function getIsApproved(): bool
+    {
+        return $this->isApproved === true;
+    }
+    
+    /**
+     * @param mixed $isApproved
+     */
+    public function setIsApproved(bool $isApproved = false): void
+    {
+        $this->isApproved = $isApproved;
     }
 }

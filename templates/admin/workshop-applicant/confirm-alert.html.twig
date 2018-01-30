@@ -1,0 +1,6 @@
+
+<div class="alert alert-{{ (error.success == true) ? 'success' : 'danger' }}">
+    <strong>{{ error.msg }}</strong>
+    <a href="{{ path('easyadmin', { action: 'list', entity: 'WorkshopApplicant' }) }}" class="btn btn-secondary action-list">Back to list</a>
+</div>
+
