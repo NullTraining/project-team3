@@ -55,8 +55,6 @@ class ContactController extends Controller
                 'text'    => 'It is so simple to send a message.'
             ]);
 
-            dump($mg);
-            die;
         }
 
         return $this->render("homepage/contact.html.twig", array("form" => $form->createView(),));
