@@ -28,6 +28,10 @@ class WorkshopApplyController extends Controller
      */
     public function applyAction(Request $request)
     {
+        if ($this->isGranted('IS_AUTHENTICATED_REMEMBERED')) {
+            return $this->redirectToRoute('index');
+        }
+        
         $applicant = new WorkshopApplicant();
         
         $form = $this->createFormBuilder($applicant)
