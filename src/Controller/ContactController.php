@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Mailgun\Mailgun;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -45,6 +46,15 @@ class ContactController extends Controller
             $contactData = $form->getData();
 
             //TODO: send mail after configuring mailgun
+            $mg = Mailgun::create('c56678cf3e449fbebb65ca9233739917');
+
+            $mg->messages()->send('team3.div3r.com', [
+                'from'    => 'postman@team3.div3r.com',
+                'to'      => 'div3r.zg@gmail.com',
+                'subject' => 'testing1!',
+                'text'    => 'It is so simple to send a message.'
+            ]);
+
         }
 
         return $this->render("homepage/contact.html.twig", array("form" => $form->createView(),));

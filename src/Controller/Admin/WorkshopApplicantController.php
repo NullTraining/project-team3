@@ -89,6 +89,12 @@ class WorkshopApplicantController extends BaseAdminController
             $newUser->setConfirmationToken($token);
             try {
                 $userManager->updateUser($newUser);
+                
+                $em = $this->getDoctrine()->getManager();
+                $applicantEntity->setIsApproved(true);
+                $em->persist($applicantEntity);
+                $em->flush();
+                
                 /**
                  * Created 30/01/2018
                  * TODO[leovujanic] - send email here
