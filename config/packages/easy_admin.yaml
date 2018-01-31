@@ -13,8 +13,20 @@ easy_admin:
         WorkshopApplicant:
             class: App\Entity\WorkshopApplicant
             controller: App\Controller\Admin\WorkshopApplicantController
+            form:
+                fields:
+                    - {property: first_name, type: text}
+                    - {property: last_name, type: text}
+                    - {property: contact_email_address, type: email}
+                    - {property: contact_phone_number, type: text}
             list:
                 actions:
                     - { name: 'approve', icon: 'thumbs-up' }
+                fields:
+                    - first_name
+                    - last_name
+                    - contact_email_address
+                    - contact_phone_number
+                    - { property: 'is_approved', type: 'boolean' }
         UserTeam:
             class: App\Entity\UserTeam
