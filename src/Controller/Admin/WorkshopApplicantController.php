@@ -10,11 +10,14 @@ namespace App\Controller\Admin;
 
 use App\Entity\WorkshopApplicant;
 use App\Repository\UserRepository;
+use App\Service\ApplicantInviteEmailService;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\TokenGenerator;
+use Swift_Mailer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Class WorkshopApplicantController
@@ -27,15 +30,28 @@ class WorkshopApplicantController extends BaseAdminController
      * @var UserRepository
      */
     private $userRepository;
+    /**
+     * @var Swift_Mailer
+     */
+    private $mailer;
+    /**
+     * @var ApplicantInviteEmailService
+     */
+    private $applicantInviteEmailService;
     
     /**
      * WorkshopApplicantController constructor.
      *
      * @param UserRepository $userRepository
      */
-    public function __construct(UserRepository $userRepository)
-    {
+    public function __construct(
+        UserRepository $userRepository,
+        Swift_Mailer $mailer,
+        ApplicantInviteEmailService $applicantInviteEmailService
+    ) {
         $this->userRepository = $userRepository;
+        $this->mailer = $mailer;
+        $this->applicantInviteEmailService = $applicantInviteEmailService;
     }
     
     /**
@@ -72,7 +88,6 @@ class WorkshopApplicantController extends BaseAdminController
         
         $form->handleRequest($this->request);
         if ($form->isSubmitted() && $form->isValid()) {
-            
             $tokenGenerator = new TokenGenerator();
             $token = $tokenGenerator->generateToken();
             
@@ -95,10 +110,17 @@ class WorkshopApplicantController extends BaseAdminController
                 $em->persist($applicantEntity);
                 $em->flush();
                 
-                /**
-                 * Created 30/01/2018
-                 * TODO[leovujanic] - send email here
-                 */
+                $this->applicantInviteEmailService->notify(
+                    $applicantEntity,
+                    $this->generateUrl(
+                        'welcome_set_password',
+                        [
+                            'token' => $token,
+                        ],
+                        UrlGeneratorInterface::ABSOLUTE_URL
+                    )
+                );
+                
                 $success = true;
                 $msg = 'User successfully invited.';
             } catch (\Exception $e) {
@@ -120,5 +142,4 @@ class WorkshopApplicantController extends BaseAdminController
             'form'   => $form->createView(),
         ]);
     }
-    
 }
