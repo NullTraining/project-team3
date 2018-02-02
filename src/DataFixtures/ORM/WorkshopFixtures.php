@@ -24,7 +24,7 @@ class WorkshopFixtures extends Fixture
         $css = new Workshop();
         $css->setTitle('CSS basics');
         $css->setDescription('In this workshop we will cover css basics');
-        $html->setDate(new DateTime());
+        $css->setDate(new DateTime());
         $css->setActive(false);
 
 
@@ -33,7 +33,7 @@ class WorkshopFixtures extends Fixture
         $manager->flush();
 
         $this->addReference('workshop-html', $html);
-        $this->addReference('workshop-html', $css);
+        $this->addReference('workshop-css', $css);
 
 
     }
