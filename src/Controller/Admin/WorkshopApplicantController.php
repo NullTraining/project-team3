@@ -14,7 +14,6 @@ use App\Service\ApplicantInviteEmailService;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use FOS\UserBundle\Model\UserManager;
 use FOS\UserBundle\Util\TokenGenerator;
-use Swift_Mailer;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
@@ -31,10 +30,6 @@ class WorkshopApplicantController extends BaseAdminController
      */
     private $userRepository;
     /**
-     * @var Swift_Mailer
-     */
-    private $mailer;
-    /**
      * @var ApplicantInviteEmailService
      */
     private $applicantInviteEmailService;
@@ -42,15 +37,14 @@ class WorkshopApplicantController extends BaseAdminController
     /**
      * WorkshopApplicantController constructor.
      *
-     * @param UserRepository $userRepository
+     * @param UserRepository              $userRepository
+     * @param ApplicantInviteEmailService $applicantInviteEmailService
      */
     public function __construct(
         UserRepository $userRepository,
-        Swift_Mailer $mailer,
         ApplicantInviteEmailService $applicantInviteEmailService
     ) {
         $this->userRepository = $userRepository;
-        $this->mailer = $mailer;
         $this->applicantInviteEmailService = $applicantInviteEmailService;
     }
     
