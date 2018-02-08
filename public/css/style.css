@@ -34,3 +34,8 @@
 .apply__page #mainNav .navbar-nav > li.nav-item > a.nav-link:focus:hover {
     color: #F05F40;
 }
+
+.copyright {
+    font-size: 10px;
+    text-align: center;
+}
