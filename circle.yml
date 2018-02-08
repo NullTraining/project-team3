@@ -44,10 +44,6 @@ jobs:
       - run:
           name: PHPUnit
           command: ./vendor/bin/simple-phpunit
-
-      - run:
-          name: Php-cs-fixer
-          command: php vendor/bin/php-cs-fixer fix --dry-run --diff
           
       - save_cache:
           key: cache-v1-{{ checksum "composer.lock" }}
