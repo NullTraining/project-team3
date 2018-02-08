@@ -15,6 +15,8 @@
                     <i class="fa fa-4x fa-diamond text-primary mb-3 sr-icons"></i>
                     <h3 class="mb-3">{{ workshop.title }}</h3>
                     <p class="text-muted mb-0">{{ workshop.description }}</p>
+                    <br />
+                    <a class="btn btn-primary btn-sm" href="{{ path('workshop_apply') }}">Apply</a>
                 </div>
             </div>
             {% endfor %}
