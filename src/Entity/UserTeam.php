@@ -17,12 +17,12 @@ class UserTeam
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=120)
      */
     private $title;
-    
+
     /**
      * @return int
      */
@@ -30,7 +30,7 @@ class UserTeam
     {
         return $this->id;
     }
-    
+
     /**
      * @param int $id
      */
@@ -38,7 +38,7 @@ class UserTeam
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return string
      */
@@ -46,7 +46,7 @@ class UserTeam
     {
         return $this->title;
     }
-    
+
     /**
      * @param string $title
      */
@@ -54,7 +54,7 @@ class UserTeam
     {
         $this->title = $title;
     }
-    
+
     /**
      * @return string
      */

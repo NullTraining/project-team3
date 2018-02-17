@@ -3,14 +3,10 @@
 namespace App\Controller;
 
 use App\Repository\WorkshopRepository;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Response;
 
 /**
- * Class HomepageController
- *
- * @package App\Controller
+ * Class HomepageController.
  */
 class HomepageController
 {
@@ -18,7 +14,7 @@ class HomepageController
      * @var WorkshopRepository
      */
     private $repository;
-    
+
     /**
      * HomepageController constructor.
      *
@@ -28,14 +24,14 @@ class HomepageController
     {
         $this->repository = $repository;
     }
-    
+
     /**
      * @Template("homepage/index.html.twig")
+     *
      * @return array
      */
     public function indexAction()
     {
-        return ['workshops' => $this->repository->findAll(),];
+        return ['workshops' => $this->repository->findAll()];
     }
-
 }

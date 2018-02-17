@@ -7,9 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class WorkshopApplicantRepository
- *
- * @package App\Repository
+ * Class WorkshopApplicantRepository.
  */
 class WorkshopApplicantRepository extends ServiceEntityRepository
 {

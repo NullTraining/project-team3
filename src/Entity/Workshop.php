@@ -16,32 +16,31 @@ class Workshop
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=120)
      */
     private $title;
-    
+
     /**
      * @ORM\Column(type="text")
      */
     private $description;
-    
-    
+
     /**
      * @ORM\Column(type="datetime")
      *
      * @var DateTime
      */
     private $date;
-    
+
     /**
      * @ORM\Column(type="boolean")
      *
      * @var bool
      */
     private $active = false;
-    
+
     /**
      * @return int
      */
@@ -49,7 +48,7 @@ class Workshop
     {
         return $this->id;
     }
-    
+
     /**
      * @param int $id
      */
@@ -57,7 +56,7 @@ class Workshop
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return string
      */
@@ -65,7 +64,7 @@ class Workshop
     {
         return $this->title;
     }
-    
+
     /**
      * @param string $title
      */
@@ -73,7 +72,7 @@ class Workshop
     {
         $this->title = $title;
     }
-    
+
     /**
      * @return string
      */
@@ -81,7 +80,7 @@ class Workshop
     {
         return $this->description;
     }
-    
+
     /**
      * @param string $description
      */
@@ -89,7 +88,7 @@ class Workshop
     {
         $this->description = $description;
     }
-    
+
     /**
      * @return null|DateTime
      */
@@ -97,7 +96,7 @@ class Workshop
     {
         return $this->date;
     }
-    
+
     /**
      * @param DateTime $date
      */
@@ -105,7 +104,7 @@ class Workshop
     {
         $this->date = $date;
     }
-    
+
     /**
      * @return bool
      */
@@ -113,7 +112,7 @@ class Workshop
     {
         return $this->active;
     }
-    
+
     /**
      * @param bool $active
      */

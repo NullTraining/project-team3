@@ -7,9 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class WorkshopRepository
- *
- * @package App\Repository
+ * Class WorkshopRepository.
  */
 class WorkshopRepository extends ServiceEntityRepository
 {
@@ -17,5 +15,4 @@ class WorkshopRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Workshop::class);
     }
-    
 }

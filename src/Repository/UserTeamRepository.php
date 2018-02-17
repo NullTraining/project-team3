@@ -7,9 +7,7 @@ use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 /**
- * Class UserTeamRepository
- *
- * @package App\Repository
+ * Class UserTeamRepository.
  */
 class UserTeamRepository extends ServiceEntityRepository
 {
