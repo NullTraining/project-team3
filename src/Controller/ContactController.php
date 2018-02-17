@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-
 /**
  * Class ContactController
  *
@@ -25,26 +24,20 @@ class ContactController extends Controller
     /**
      * @Route("/contact", name="contact")
      * @Template("homepage/contact.html.twig")
-     * @return array
      */
-
     public function contactAction(Request $request)
     {
-
 
         $form = $this->createFormBuilder()
             ->add("Name", TextType::class)
             ->add("E-mail", EmailType::class)
             ->add("Message", TextareaType::class)
-            ->add("Send", SubmitType::class, array("label" => "Send message"))
+            ->add("Send", SubmitType::class, ["label" => "Send message"])
             ->getForm();
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-
-            $contactData = $form->getData();
-
             //TODO: send mail after configuring mailgun
             $mg = Mailgun::create('c56678cf3e449fbebb65ca9233739917');
 
@@ -54,11 +47,8 @@ class ContactController extends Controller
                 'subject' => 'testing1!',
                 'text'    => 'It is so simple to send a message.'
             ]);
-
         }
 
-        return $this->render("homepage/contact.html.twig", array("form" => $form->createView(),));
+        return $this->render("homepage/contact.html.twig", ["form" => $form->createView(),]);
     }
-
-
 }
