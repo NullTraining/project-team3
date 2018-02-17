@@ -13,7 +13,6 @@
     <exclude-pattern>DoctrineMigrations/Version*.php</exclude-pattern>
     <exclude-pattern>DependencyInjection/Configuration.php</exclude-pattern>
     <exclude-pattern>DependencyInjection/*Extension.php</exclude-pattern>
-    <exclude-pattern>src/AppBundle/Controller/DefaultController.php</exclude-pattern>
     <exclude-pattern>src/Migrations/</exclude-pattern>
     <rule ref="rulesets/codesize.xml/CyclomaticComplexity"/>
     <rule ref="rulesets/codesize.xml/NPathComplexity"/>
