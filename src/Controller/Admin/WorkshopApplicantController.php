@@ -1,9 +1,7 @@
 <?php
 /**
  * User: leonardvujanic
- * DateTime: 23/01/2018 00:11
- *
- *
+ * DateTime: 23/01/2018 00:11.
  */
 
 namespace App\Controller\Admin;
@@ -19,9 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
- * Class WorkshopApplicantController
- *
- * @package Controller\Admin
+ * Class WorkshopApplicantController.
  */
 class WorkshopApplicantController extends BaseAdminController
 {
@@ -33,7 +29,7 @@ class WorkshopApplicantController extends BaseAdminController
      * @var ApplicantInviteEmailService
      */
     private $applicantInviteEmailService;
-    
+
     /**
      * WorkshopApplicantController constructor.
      *
@@ -44,10 +40,10 @@ class WorkshopApplicantController extends BaseAdminController
         UserRepository $userRepository,
         ApplicantInviteEmailService $applicantInviteEmailService
     ) {
-        $this->userRepository = $userRepository;
+        $this->userRepository              = $userRepository;
         $this->applicantInviteEmailService = $applicantInviteEmailService;
     }
-    
+
     /**
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -55,13 +51,13 @@ class WorkshopApplicantController extends BaseAdminController
     {
         $easyadmin = $this->request->attributes->get('easyadmin');
         /**
-         * @var $applicantEntity WorkshopApplicant
+         * @var WorkshopApplicant
          */
         $applicantEntity = $easyadmin['item'];
-        
+
         $user = $this->userRepository->findByUsername($applicantEntity->getContactEmailAddress());
-        
-        if ($user !== null) {
+
+        if (null !== $user) {
             return $this->render('admin/workshop-applicant/confirm-approve.html.twig', [
                 'entity' => $applicantEntity,
                 'error'  => [
@@ -70,7 +66,7 @@ class WorkshopApplicantController extends BaseAdminController
                 ],
             ]);
         }
-        
+
         $form = $this->createFormBuilder()
             ->add('confirm_invite', HiddenType::class, [
                 'data'     => 1,
@@ -78,18 +74,17 @@ class WorkshopApplicantController extends BaseAdminController
             ])
             ->add('ok', SubmitType::class)
             ->getForm();
-        
-        
+
         $form->handleRequest($this->request);
         if ($form->isSubmitted() && $form->isValid()) {
             $tokenGenerator = new TokenGenerator();
-            $token = $tokenGenerator->generateToken();
-            
+            $token          = $tokenGenerator->generateToken();
+
             /**
-             * @var $userManager UserManager
+             * @var UserManager
              */
             $userManager = $this->get('fos_user.user_manager');
-            $newUser = $userManager->createUser();
+            $newUser     = $userManager->createUser();
             $newUser->setUsername($applicantEntity->getContactEmailAddress());
             $newUser->setEmail($applicantEntity->getContactEmailAddress());
             $newUser->setEmailCanonical($applicantEntity->getContactEmailAddress());
@@ -98,12 +93,12 @@ class WorkshopApplicantController extends BaseAdminController
             $newUser->setConfirmationToken($token);
             try {
                 $userManager->updateUser($newUser);
-                
+
                 $em = $this->getDoctrine()->getManager();
                 $applicantEntity->setIsApproved(true);
                 $em->persist($applicantEntity);
                 $em->flush();
-                
+
                 $this->applicantInviteEmailService->notify(
                     $applicantEntity,
                     $this->generateUrl(
@@ -114,14 +109,14 @@ class WorkshopApplicantController extends BaseAdminController
                         UrlGeneratorInterface::ABSOLUTE_URL
                     )
                 );
-                
+
                 $success = true;
-                $msg = 'User successfully invited.';
+                $msg     = 'User successfully invited.';
             } catch (\Exception $e) {
                 $success = false;
-                $msg = 'Ooops! Something went wrong';
+                $msg     = 'Ooops! Something went wrong';
             }
-            
+
             return $this->render('admin/workshop-applicant/confirm-approve.html.twig', [
                 'entity' => $applicantEntity,
                 'error'  => [
@@ -130,7 +125,7 @@ class WorkshopApplicantController extends BaseAdminController
                 ],
             ]);
         }
-        
+
         return $this->render('admin/workshop-applicant/confirm-approve.html.twig', [
             'entity' => $applicantEntity,
             'form'   => $form->createView(),

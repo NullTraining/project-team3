@@ -15,33 +15,34 @@ class WorkshopApplicant
      * @ORM\Column(type="integer")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $firstName;
-    
+
     /**
      * @ORM\Column(type="string", length=64)
      */
     private $lastName;
-    
+
     /**
      * @ORM\Column(type="string", length=255, unique=true)
      */
     private $contactEmailAddress;
-    
+
     /**
      * @ORM\Column(type="string", length=32)
      */
     private $contactPhoneNumber;
-    
+
     /**
      * @ORM\Column(type="boolean", options={"default" : 0})
-     * @var $isApproved bool
+     *
+     * @var bool
      */
     private $isApproved = false;
-    
+
     /**
      * @return int
      */
@@ -49,7 +50,7 @@ class WorkshopApplicant
     {
         return $this->id;
     }
-    
+
     /**
      * @param int $id
      */
@@ -57,7 +58,7 @@ class WorkshopApplicant
     {
         $this->id = $id;
     }
-    
+
     /**
      * @return string
      */
@@ -65,7 +66,7 @@ class WorkshopApplicant
     {
         return $this->firstName;
     }
-    
+
     /**
      * @param string $firstName
      */
@@ -73,7 +74,7 @@ class WorkshopApplicant
     {
         $this->firstName = $firstName;
     }
-    
+
     /**
      * @return string
      */
@@ -81,7 +82,7 @@ class WorkshopApplicant
     {
         return $this->lastName;
     }
-    
+
     /**
      * @param string $lastName
      */
@@ -89,7 +90,7 @@ class WorkshopApplicant
     {
         $this->lastName = $lastName;
     }
-    
+
     /**
      * @return string
      */
@@ -97,7 +98,7 @@ class WorkshopApplicant
     {
         return $this->contactEmailAddress;
     }
-    
+
     /**
      * @param string $contactEmailAddress
      */
@@ -105,7 +106,7 @@ class WorkshopApplicant
     {
         $this->contactEmailAddress = $contactEmailAddress;
     }
-    
+
     /**
      * @return string
      */
@@ -113,7 +114,7 @@ class WorkshopApplicant
     {
         return $this->contactPhoneNumber;
     }
-    
+
     /**
      * @param string $contactPhoneNumber
      */
@@ -121,15 +122,15 @@ class WorkshopApplicant
     {
         $this->contactPhoneNumber = $contactPhoneNumber;
     }
-    
+
     /**
      * @return bool
      */
     public function getIsApproved(): bool
     {
-        return $this->isApproved === true;
+        return true === $this->isApproved;
     }
-    
+
     /**
      * @param mixed $isApproved
      */

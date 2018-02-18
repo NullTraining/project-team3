@@ -1,9 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * User: leonardvujanic
- * DateTime: 29/01/2018 23:12
- *
- *
+ * DateTime: 29/01/2018 23:12.
  */
 
 namespace App\Controller;
@@ -18,35 +18,34 @@ use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
 
 /**
- * Class WelcomeController
- *
- * @package Controller
+ * Class WelcomeController.
  */
 class WelcomeController extends Controller
 {
     /**
      * @Route("/welcome", name="welcome_set_password")
+     *
      * @param Request $request
      *
-     * @return \Symfony\Component\HttpFoundation\Response
      * @throws \Exception
+     *
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function setPasswordAction(Request $request)
     {
         $token = $request->get('token');
-        
-        if ($token === null) {
+
+        if (null === $token) {
             throw new \Exception('No token');
         }
-        
-        
+
         $userManager = $this->get('fos_user.user_manager');
-        $user = $userManager->findUserByConfirmationToken($token);
-        
-        if ($user === null) {
+        $user        = $userManager->findUserByConfirmationToken($token);
+
+        if (null === $user) {
             throw new \Exception('No user found');
         }
-        
+
         $form = $this->createFormBuilder()
             ->add('password', RepeatedType::class, [
                 'type'            => PasswordType::class,
@@ -58,8 +57,7 @@ class WelcomeController extends Controller
             ])
             ->add('confirm', SubmitType::class)
             ->getForm();
-        
-        
+
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             // set user password
@@ -67,23 +65,23 @@ class WelcomeController extends Controller
             $user->setPlainPassword($form->getData()['password']);
             $user->setEnabled(true);
             $userManager->updateUser($user);
-            
+
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $this->get('session')->set('_security_main', serialize($token));
-    
+
             $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
             $this->get('security.token_storage')->setToken($token);
             $this->get('session')->set('_security_main', serialize($token));
-            
+
             // Fire the login event manually
             $event = new InteractiveLoginEvent($request, $token);
-            $this->get("event_dispatcher")->dispatch('security.interactive_login', $event);
-            
+            $this->get('event_dispatcher')->dispatch('security.interactive_login', $event);
+
             return $this->render(
                 'welcome/welcome.html.twig'
             );
         }
-        
+
         return $this->render(
             'welcome/set-password.html.twig',
             [
