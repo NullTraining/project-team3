@@ -132,7 +132,7 @@ class WorkshopApplicant
     }
 
     /**
-     * @param mixed $isApproved
+     * @param bool $isApproved
      */
     public function setIsApproved(bool $isApproved = false): void
     {
