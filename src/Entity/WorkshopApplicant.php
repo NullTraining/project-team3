@@ -94,7 +94,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getContactEmailAddress(): ?string
+    public function getContactEmailAddress()
     {
         return $this->contactEmailAddress;
     }
