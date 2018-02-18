@@ -42,6 +42,10 @@ jobs:
           command: php bin/console doctrine:migrations:migrate --no-interaction
 
       - run:
+           name: PHP Mess Detector
+           command: ./vendor/bin/phpmd src/ text phpmd.xml
+
+      - run:
           name: PHPUnit
           command: ./vendor/bin/simple-phpunit
 
