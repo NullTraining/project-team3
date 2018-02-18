@@ -6,7 +6,6 @@ use App\Entity\Workshop;
 use App\Repository\WorkshopRepository;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class WorkshopController
@@ -22,11 +21,12 @@ class WorkshopController
     /**
      * @Route("/workshops", name="workshops_list")
      * @Template("workshop/workshops.html.twig")
+     *
      * @return array
      */
     public function indexWorkshops()
     {
         //return new Response('This is workshops page');
-        return ['workshops' => $this->workshopRepository->findAll(),];
+        return ['workshops' => $this->workshopRepository->findAll()];
     }
 }

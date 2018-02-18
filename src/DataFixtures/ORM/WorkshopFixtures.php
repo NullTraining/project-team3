@@ -7,12 +7,8 @@ use DateTime;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-
-
-
 class WorkshopFixtures extends Fixture
 {
-
     public function load(ObjectManager $manager)
     {
         $html = new Workshop();
@@ -27,15 +23,12 @@ class WorkshopFixtures extends Fixture
         $css->setDate(new DateTime());
         $css->setActive(false);
 
-
         $manager->persist($html);
         $manager->persist($css);
         $manager->flush();
 
         $this->addReference('workshop-html', $html);
         $this->addReference('workshop-css', $css);
-
-
     }
 
     public function getOrder()

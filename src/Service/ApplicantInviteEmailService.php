@@ -1,9 +1,9 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 /**
  * User: leonardvujanic
- * DateTime: 31/01/2018 18:04
- *
- *
+ * DateTime: 31/01/2018 18:04.
  */
 
 namespace App\Service;
@@ -13,9 +13,7 @@ use Swift_Mailer;
 use Symfony\Bundle\TwigBundle\TwigEngine;
 
 /**
- * Class ApplicantInviteEmailService
- *
- * @package App\Service
+ * Class ApplicantInviteEmailService.
  */
 class ApplicantInviteEmailService
 {
@@ -25,13 +23,13 @@ class ApplicantInviteEmailService
      * @var TwigEngine
      */
     private $templating;
-    
+
     public function __construct(Swift_Mailer $mailer, TwigEngine $templating)
     {
-        $this->mailer = $mailer;
+        $this->mailer     = $mailer;
         $this->templating = $templating;
     }
-    
+
     /**
      * @param WorkshopApplicant $entity
      * @param string            $link
@@ -44,12 +42,12 @@ class ApplicantInviteEmailService
             'entity'     => $entity,
             'inviteLink' => $link,
         ]);
-        
+
         $message = (new \Swift_Message('Wellcome to Null training - TEAM 3'))
             ->setFrom('team3.nt@gmail.com')
             ->setTo('leonard.vujanic@gmail.com')
             ->setBody($body, 'text/html');
-        
+
         $this->mailer->send($message);
     }
 }

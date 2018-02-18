@@ -19,18 +19,18 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\ManyToOne(targetEntity="\App\Entity\UserTeam", inversedBy="users")
      * @ORM\JoinColumn(nullable=true)
      */
     private $team;
-    
+
     public function __construct()
     {
         parent::__construct();
     }
-    
+
     /**
      * @return mixed
      */
@@ -38,7 +38,7 @@ class User extends BaseUser
     {
         return $this->team;
     }
-    
+
     /**
      * @param mixed $team
      */
@@ -46,6 +46,4 @@ class User extends BaseUser
     {
         $this->team = $team;
     }
-    
-    
 }
