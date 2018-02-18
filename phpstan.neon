@@ -1,2 +1,5 @@
 parameters:
 	ignoreErrors:
+	excludes_analyse:
+		- %rootDir%/../../../src/Migrations/*
+		- %rootDir%/../../../src/Controller/LeoTestController.php
