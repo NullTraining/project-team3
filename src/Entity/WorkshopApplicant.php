@@ -126,7 +126,7 @@ class WorkshopApplicant
     /**
      * @return bool
      */
-    public function getIsApproved(): bool
+    public function isApproved(): bool
     {
         return true === $this->isApproved;
     }

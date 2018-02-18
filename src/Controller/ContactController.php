@@ -20,8 +20,6 @@ class ContactController extends Controller
     /**
      * @Route("/contact", name="contact")
      * @Template("homepage/contact.html.twig")
-     *
-     * @return array
      */
     public function contactAction(Request $request)
     {
@@ -35,8 +33,6 @@ class ContactController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $contactData = $form->getData();
-
             //TODO: send mail after configuring mailgun
             $mg = Mailgun::create('c56678cf3e449fbebb65ca9233739917');
 
