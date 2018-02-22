@@ -51,7 +51,7 @@ class WorkshopApplicantController extends BaseAdminController
     {
         $easyadmin = $this->request->attributes->get('easyadmin');
         /**
-         * @var $applicantEntity WorkshopApplicant
+         * @var WorkshopApplicant $applicantEntity
          */
         $applicantEntity = $easyadmin['item'];
 
