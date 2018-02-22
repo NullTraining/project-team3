@@ -1,5 +1,7 @@
 parameters:
 	ignoreErrors:
+	autoload_directories:
+	    - vendor/bin/.phpunit/phpunit-5.7/src/
 	excludes_analyse:
 		- %rootDir%/../../../src/Migrations/*
 		- %rootDir%/../../../src/Controller/LeoTestController.php
