@@ -19,6 +19,7 @@ class User extends BaseUser
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+    
 
     /**
      * @ORM\ManyToOne(targetEntity="\App\Entity\UserTeam", inversedBy="users")
