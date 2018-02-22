@@ -94,7 +94,7 @@ class WorkshopApplicant
     /**
      * @return string
      */
-    public function getContactEmailAddress(): ?string
+    public function getContactEmailAddress()
     {
         return $this->contactEmailAddress;
     }
@@ -132,7 +132,7 @@ class WorkshopApplicant
     }
 
     /**
-     * @param mixed $isApproved
+     * @param bool $isApproved
      */
     public function setIsApproved(bool $isApproved = false): void
     {
