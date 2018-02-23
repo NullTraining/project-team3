@@ -46,6 +46,10 @@ jobs:
            command: ./vendor/bin/phpmd src/ text phpmd.xml
 
       - run:
+           name: PHPcs
+           command: ./vendor/bin/phpcs --standard=phpcs.xml src -n
+
+      - run:
           name: PHPUnit
           command: ./vendor/bin/simple-phpunit
 
