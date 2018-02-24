@@ -3,7 +3,7 @@
 <project default="default" name="Team 3 Workshops">
 
     <target name="default" description="Help target">
-        <exec command="phing -l" passthru="true"/>
+        <exec command="./vendor/bin/phing -l" passthru="true"/>
     </target>
 
     <target name="all" depends="test,fix-codestandards,phpstan"/>
