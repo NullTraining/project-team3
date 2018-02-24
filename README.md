@@ -1,5 +1,5 @@
 # project-team3
-Team 3 project
+Team 3 project [PRODUCTION URL](https://team3-training.herokuapp.com)
 
 To start using Vagrant:
 
