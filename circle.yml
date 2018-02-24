@@ -48,7 +48,7 @@ jobs:
 
       - run:
            name: PHPcs
-           command: ./vendor/bin/phpcs --standard=phpcs.xml src -n
+           command: vendor/bin/phing phpcs
 
       - run:
           name: PHPUnit
