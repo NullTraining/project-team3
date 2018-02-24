@@ -15,6 +15,7 @@ jobs:
           - DATABASE_NAME=bob_test
           - DATABASE_USER=bob
           - DATABASE_PASSWORD=n0p455
+          - DATABASE_CHARSET=utf8mb4
       - image: mysql:5.7
         environment:
           - MYSQL_ROOT_PASSWORD=n0p455
