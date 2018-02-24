@@ -44,7 +44,7 @@ jobs:
 
       - run:
            name: PHP Mess Detector
-           command: ./vendor/bin/phpmd src/ text phpmd.xml
+           command: vendor/bin/phing phpmd
 
       - run:
            name: PHPcs
