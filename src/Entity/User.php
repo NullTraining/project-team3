@@ -26,6 +26,13 @@ class User extends BaseUser
      */
     private $team;
 
+    /**
+     * @ORM\Column(type="boolean", options={"default" : 0})
+     *
+     * @var bool
+     */
+    private $isEmailVisible;
+
     public function __construct()
     {
         parent::__construct();
@@ -45,5 +52,21 @@ class User extends BaseUser
     public function setTeam($team): void
     {
         $this->team = $team;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isEmailVisible(): bool
+    {
+        return $this->isEmailVisible;
+    }
+
+    /**
+     * @param bool $isEmailVisible
+     */
+    public function setIsEmailVisible(bool $isEmailVisible): void
+    {
+        $this->isEmailVisible = $isEmailVisible;
     }
 }
