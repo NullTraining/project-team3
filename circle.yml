@@ -56,7 +56,7 @@ jobs:
 
       - run:
           name: PHPstan
-          command: ./vendor/bin/phpstan analyse -l 7 -c phpstan.neon src tests
+          command: vendor/bin/phing phpstan
 
       - run:
           name: Php-cs-fixer
