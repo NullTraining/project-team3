@@ -60,7 +60,7 @@ jobs:
 
       - run:
           name: Php-cs-fixer
-          command: php vendor/bin/php-cs-fixer fix --dry-run --diff
+          command: vendor/bin/phing php-cs-fixer-check
 
       - run:
           name: Ship codecoverage to codecov.io
