@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+
+<project default="default" name="Team 3 Workshops">
+
+    <target name="default" description="Help target">
+        <exec command="./vendor/bin/phing -l" passthru="true"/>
+    </target>
+
+    <target name="all" depends="test,fix-codestandards,phpstan"/>
+    <target name="test" depends="phpunit"/>
+
+    <target name="fix-codestandards" depends="phpcbf,php-cs-fixer-fix,phpmd,phpcs"/>
+    <target name="check-codestandards" depends="php-cs-fixer-check,phpmd,phpcs"/>
+
+    <target name="php-cs-fixer-fix" description="Run php-cs-fixer fix">
+        <retry retrycount="3">
+            <exec command="./vendor/bin/php-cs-fixer fix" passthru="true" checkreturn="true"/>
+        </retry>
+    </target>
+
+    <target name="phpunit" description="Run phpunit">
+        <exec command="./vendor/bin/simple-phpunit" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="phpstan" description="Run phpstan">
+        <exec command="./vendor/bin/phpstan --memory-limit=-1 analyse -l 7 -c phpstan.neon src tests" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="php-cs-fixer-check" description="Run php-cs-fixer check">
+        <exec command="./vendor/bin/php-cs-fixer fix --dry-run --diff" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="phpmd" description="Run phpmd">
+        <phingcall target="phpmd-task">
+            <property name="path" value="src"/>
+        </phingcall>
+        <phingcall target="phpmd-task">
+            <property name="path" value="tests"/>
+        </phingcall>
+    </target>
+
+    <target name="phpcs" description="Run phpcs">
+        <phingcall target="phpcs-task">
+            <property name="path" value="src"/>
+        </phingcall>
+        <phingcall target="phpcs-task">
+            <property name="path" value="tests"/>
+        </phingcall>
+    </target>
+
+    <target name="phpcbf" description="Run phpcbf">
+        <phingcall target="phpcbf-task">
+            <property name="path" value="src"/>
+        </phingcall>
+        <phingcall target="phpcbf-task">
+            <property name="path" value="tests"/>
+        </phingcall>
+    </target>
+
+    <target name="phpmd-task" description="Run php mess detector">
+        <exec command="./vendor/bin/phpmd ${path} text phpmd.xml" passthru="true" checkreturn="true"/>
+    </target>
+    <target name="phpcs-task" description="Run php code sniffer">
+        <exec command="./vendor/bin/phpcs --standard=phpcs.xml ${path} -n" passthru="true" checkreturn="true"/>
+    </target>
+    <target name="phpcbf-task" description="Run php code sniffer fixer">
+        <exec command="./vendor/bin/phpcbf --standard=phpcs.xml ${path} -n" passthru="true" checkreturn="true"/>
+    </target>
+
+    <target name="refresh-dev-db" description="Refresh dev DB">
+        <exec command="bin/console doctrine:database:drop --force --if-exists --env=dev" passthru="true" checkreturn="true"/>
+        <exec command="bin/console doctrine:database:create --env=dev" passthru="true" checkreturn="true"/>
+        <exec command="bin/console doctrine:migrations:migrate --no-interaction --env=dev" passthru="true"/>
+        <exec command="bin/console doctrine:fixtures:load --verbose --append --env=dev" passthru="true"/>
+    </target>
+
+    <target name="refresh-test-db" description="Refresh test DB">
+        <exec command="bin/console doctrine:database:drop --force --if-exists --env=test" passthru="true" checkreturn="true"/>
+        <exec command="bin/console doctrine:database:create --env=test" passthru="true" checkreturn="true"/>
+        <exec command="bin/console doctrine:migrations:migrate --no-interaction --env=test" passthru="true"/>
+        <exec command="bin/console doctrine:fixtures:load --verbose --append --env=test" passthru="true"/>
+    </target>
+
+</project>
