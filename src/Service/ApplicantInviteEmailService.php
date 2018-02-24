@@ -45,7 +45,7 @@ class ApplicantInviteEmailService
 
         $message = (new \Swift_Message('Wellcome to Null training - TEAM 3'))
             ->setFrom('team3.nt@gmail.com')
-            ->setTo('leonard.vujanic@gmail.com')
+            ->setTo($entity->getContactEmailAddress())
             ->setBody($body, 'text/html');
 
         $this->mailer->send($message);
