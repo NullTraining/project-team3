@@ -15,4 +15,17 @@ class WorkshopRepository extends ServiceEntityRepository
     {
         parent::__construct($registry, Workshop::class);
     }
+
+    /**
+     * @return array
+     */
+    public function getAllActiveWorkshops()
+    {
+        return $this
+            ->createQueryBuilder('w')
+            ->orderBy('w.title')
+            ->where('w.active = true')
+            ->getQuery()
+            ->getResult();
+    }
 }
