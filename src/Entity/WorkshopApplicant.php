@@ -44,6 +44,11 @@ class WorkshopApplicant
     private $isApproved = false;
 
     /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $interestedIn;
+
+    /**
      * @return int
      */
     public function getId(): ?int
@@ -137,5 +142,21 @@ class WorkshopApplicant
     public function setIsApproved(bool $isApproved = false): void
     {
         $this->isApproved = $isApproved;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getInterestedIn()
+    {
+        return $this->interestedIn;
+    }
+
+    /**
+     * @param int $interestedIn
+     */
+    public function setInterestedIn(int $interestedIn = null): void
+    {
+        $this->interestedIn = $interestedIn;
     }
 }

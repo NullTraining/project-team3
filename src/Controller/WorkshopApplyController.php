@@ -7,7 +7,9 @@
 namespace App\Controller;
 
 use App\Entity\WorkshopApplicant;
+use App\Repository\WorkshopRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
@@ -27,15 +29,16 @@ class WorkshopApplyController extends Controller
             return $this->redirectToRoute('index');
         }
 
+        $activeWorkshops = $this->get(WorkshopRepository::class)->getAllActiveWorkshops();
+
+        $selectWorkshops = [];
+        foreach ($activeWorkshops as $workshop) {
+            $selectWorkshops[$workshop->getTitle()] = $workshop->getId();
+        }
+
         $applicant = new WorkshopApplicant();
 
-        $form = $this->createFormBuilder($applicant)
-            ->add('firstName', TextType::class)
-            ->add('lastName', TextType::class)
-            ->add('contactEmailAddress', EmailType::class)
-            ->add('contactPhoneNumber', TextType::class)
-            ->getForm();
-
+        $form = $this->createApplicantForm($applicant, $selectWorkshops);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -52,6 +55,22 @@ class WorkshopApplyController extends Controller
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    protected function createApplicantForm(WorkshopApplicant $applicant, array $selectWorkshops)
+    {
+        $formBuilder = $this->createFormBuilder($applicant)
+            ->add('firstName', TextType::class)
+            ->add('lastName', TextType::class)
+            ->add('contactEmailAddress', EmailType::class)
+            ->add('contactPhoneNumber', TextType::class);
+        if (!empty($selectWorkshops)) {
+            $formBuilder->add('interestedIn', ChoiceType::class, [
+                'choices'  => $selectWorkshops,
+            ]);
+        }
+
+        return $formBuilder->getForm();
     }
 
     /**
